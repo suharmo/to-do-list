@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <title>To do List</title>
+</head>
+
+<body>
+    <h1 class="display-2 text-center">To do List </h1>
+    <div class="d-flex justify-content-center p-3">
+        <div class="d-flex" id="input">
+            <button class="btn btn-info p-3 m-1" id="section-btn" onclick="showInputSec()">
+                Add section
+            </button>
+            <div class="d-none" id="section">
+                <h1>Add Section</h1>
+                <input type="text" class="p-2" id="input-sec" autofocus>
+                <button class="btn btn-success p-3 m-1" id="section-confirm" onclick="confirmSection()">
+                    Confirm
+                </button>
+                <button class="btn btn-danger p-3 m-1 back" onclick="backD()">
+                    Back
+                </button>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="d-flex">
+                <div class="d-none" id="task">
+                    <button class="btn btn-danger p-3 m-1 back" onclick="backD()">
+                        Back
+                    </button>
+                    <button class="btn btn-warning p-3 m-1" id="task-confirm" onclick="confirmTask()">
+                        Confirm
+                    </button>
+                    <select name="section-select" id=""></select>
+                    <input type="text" class="p-2" id="input-task" autofocus>
+                    <h1 class="text-right">Add Task</h1>
+                </div>
+                <button class="btn btn-warning text-light p-3 m-1" id="task-btn" onclick="showInputTask()">
+                    Add task
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <section id="container" class="container">
+            
+       
+    </section>
+    <script src="./public/js/app.js"></script>
+</body>
+
+</html>

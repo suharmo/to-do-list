@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette");
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+body h1 {
+  font-family: "Courgette", cursive;
+}
+
+#container ul {
+  font-family: "Courgette", cursive;
+  font-size: 4rem;
+}
+#container ul li {
+  list-style: none;
+  font-family: "Indie Flower", cursive;
+  font-size: 2rem;
+}
+
+input[type=checkbox] {
+  transform: scale(3);
+}
+
+hr {
+  margin-top: 0 !important;
+  padding-top: 2px !important;
+  border-top: 4px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/*# sourceMappingURL=style.css.map */
