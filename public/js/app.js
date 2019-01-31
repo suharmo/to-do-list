@@ -52,7 +52,7 @@ function confirmSection() {
     text[0] = text[0].toUpperCase();
     inn = text.join('');
     ul = document.createElement('ul');
-    ul.setAttribute('style', 'background: rgba(255, 255, 255, 0.603);border: 5px solid white; border-image: url("../../img/decoration-side.png") 30 round')
+    ul.setAttribute('style', 'background: rgba(255, 255, 255, 0.603);border: 5px solid white')
     opt = document.createElement('option');
     ul.innerHTML = inn
     ul.dataset.id = inn;
@@ -79,7 +79,7 @@ var verify;
 var btnErase;
 var btnEdit;
 
-function verifyB() {
+function verifyB(verify) {
     var parent = verify.parentElement
     if (parent.style.textDecoration == 'none') {
         parent.setAttribute('style', 'text-decoration: line-through; position:relative; display:flex')
@@ -88,30 +88,33 @@ function verifyB() {
     }
 }
 
-function erase() {
+function erase(btnErase) {
     var list = btnErase.parentElement;
     var parent = list.parentElement;
     parent.removeChild(list)
+    console.log(parent, list)
 }
 var input;
 var valuein;
-var list;
 var boo = false;
-function edit() {
-    list = h1.parentElement;
-    
-    if(list.dataset.id && boo) {
+
+function edit(btnEdit) {
+    var list = btnEdit.parentElement;
+    var h1 = list.children[0];
+    console.log(h1)
+    if (list.dataset.id && boo) {
         h1.innerHTML = input.value;
         console.log(input.value)
         boo = false
+    } else if (list.dataset.id ) {
         
-    }else if(!list.dataset.id || !h1.dataset.id){
-        list.dataset.id = h1.innerHTML;
-        console.log(list.dataset.id)
-        h1.innerHTML = '<input type="text" id="inputEdit">';
+        let chil = list.children[0]
+        list.dataset.id = chil.innerHTML
+        chil.innerHTML = '<input type="text" id="inputEdit">';
         input = document.getElementById('inputEdit');
-        input.value  = list.dataset.id  
-        boo = true;     
+        input.value = list.dataset.id
+        boo = true;
+        console.log(chil)
     }
 }
 
@@ -122,52 +125,17 @@ function confirmTask() {
     text[0] = text[0].toUpperCase();
     inn = text.join('');
     for (i = 0; i < uls.length; i++) {
-
         if (selectPick.value == uls[i].dataset.id) {
             // console.dir(selectPick)
             li = document.createElement('li');
-            li.setAttribute('style', 'position: relative!important')
-            h1 = document.createElement('h1')
-            h1.innerHTML = inn
-            li.appendChild(h1)
+            li.setAttribute('style', 'position: relative!important');
+            li.innerHTML = `<h1></h1><button id='verify' style="right: 12%; position : absolute" class="btn" onclick="verifyB(this)"><i class="fas fa-check"></i></button><button id='erase' style="right: 8%; position : absolute" class="btn" onclick="erase(this)"><i class="fas fa-times"></i></button><button id='edit' style="right: 3%; position : absolute" class="btn" onclick="edit(this)"><i class="fas fa-pen"></i></button>`
+            h1 = li.children[0]
+            h1.innerHTML = inn;
+            li.dataset.id = h1.innerHTML
             li.setAttribute('style', 'position: relative; display : flex')
             uls[i].appendChild(li);
-            verify = document.createElement("button");
-            iconY = document.createElement('i');
-            iconY.classList.add('fas');
-            iconY.classList.add('fa-check');
-            verify.setAttribute('style', 'right: 10%; position : absolute')
-            verify.appendChild(iconY)
-            verify.classList.add('btn');
-            verify.addEventListener('click', () => {
-                verifyB()
-            });
-            li.appendChild(verify)
-            btnErase = document.createElement('button')
-            iconX = document.createElement('i');
-            iconX.classList.add('fas');
-            iconX.classList.add('fa-times');
-            btnErase.setAttribute('style', 'right: 7%; position : absolute')
-            btnErase.appendChild(iconX)
-            btnErase.classList.add('btn');
-            btnErase.addEventListener('click', () => {
-                erase()
-            });
-            li.appendChild(btnErase)
-            btnEdit = document.createElement('button');
-            iconE = document.createElement('i');
-            iconE.classList.add('fas');
-            iconE.classList.add('fa-pen');
-            btnEdit.setAttribute('style', 'right: 4%; position : absolute')
-            btnEdit.appendChild(iconE)
-            btnEdit.classList.add('btn');
-            btnEdit.addEventListener('click', () => {
-                edit()
-            });
-            li.appendChild(btnEdit)
-
         }
-
         taskInput.value = null;
     }
 
